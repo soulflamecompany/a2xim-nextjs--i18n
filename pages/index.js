@@ -4,10 +4,17 @@ import Hero from "../components/Hero/Hero";
 import About from "../components/About/About";
 import GeoMap from "../components/GeoMap/GeoMap";
 import RequestForm from "../components/RequestForm/RequestForm";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import "../i18n/i18n";
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
 
-export default function Home() {
+export default function Home(props) {
   return (
     <>
       <Head>

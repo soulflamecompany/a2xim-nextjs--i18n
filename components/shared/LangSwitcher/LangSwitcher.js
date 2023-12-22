@@ -1,15 +1,22 @@
+// LangSwitcher.js
 import styles from "./LangSwitcher.module.scss";
-import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 const LangSwitcher = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const router = useRouter();
+
   const toggle = async () => {
-    await i18n.changeLanguage(i18n.language === "ru" ? "en" : "ru");
+    const newLocale = router.locale === "ru" ? "en" : "ru";
+    await router.push(router.pathname, router.asPath, { locale: newLocale });
   };
+
   return (
     <button onClick={toggle} className={styles.langButton}>
       {t("Language")}
     </button>
   );
 };
+
 export default LangSwitcher;

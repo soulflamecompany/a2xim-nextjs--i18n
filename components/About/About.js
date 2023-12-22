@@ -1,7 +1,7 @@
 import styles from "./About.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const About = () => {
   const { t } = useTranslation();
